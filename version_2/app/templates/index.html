@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171a3b">
+    <meta name="description" content="FinScope turns one project brief into reviewable requirements and an SRS document.">
+    <title>FinScope — Financial Requirements Studio</title>
+    <link rel="stylesheet" href="/static/styles.css?v=finscope-indigo-v2">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">F</span><span>FinScope</span></div>
+      <p>Financial requirements, from project brief to SRS</p>
+    </header>
+    <main>
+      <section class="workspace" aria-labelledby="workspace-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">FinScope workspace · Version 2</p><h1 id="workspace-title">Describe your project once</h1><p class="page-intro">The Requirements Gathering Agent turns your brief into draft requirements. The SRS Generation Agent creates a reviewable specification document.</p></div>
+        </div>
+        <div class="agent-summary" aria-label="Project agents">
+          <span><strong>Agent 1 · Requirements Gathering</strong>Extracts and classifies requirements from your brief.</span>
+          <span><strong>Agent 2 · SRS Generation</strong>Builds a downloadable IEEE 830 style Word document.</span>
+        </div>
+        <form id="briefForm" class="intake">
+          <label for="projectBrief">Project brief<textarea id="projectBrief" name="project_brief" placeholder="Describe the project, its goals, intended users, key workflows, rules, and constraints in your own words." required minlength="30" maxlength="12000"></textarea></label>
+          <p class="quiet">Enter the brief once. The agents generate the requirements and SRS in one step. No interview or follow-up answers are needed.</p>
+          <button id="generateButton" type="submit">Generate requirements and SRS</button>
+        </form>
+      </section>
+
+      <section id="resultPanel" class="panel is-hidden" aria-live="polite">
+        <div class="panel-title"><div><p class="eyebrow">Agent output</p><h2 id="resultTitle">Project specification</h2></div><a id="downloadSrs" class="icon-action" href="#">Download SRS (.docx)</a></div>
+        <p id="agentStatus" class="muted"></p>
+        <div class="workflow"><p class="eyebrow">Source brief</p><p id="briefPreview"></p></div>
+        <div class="panel-title" style="margin-top:24px"><div><p class="eyebrow">Requirements Gathering Agent</p><h2>Draft requirements</h2></div><span id="requirementCount" class="count"></span></div>
+        <div id="requirementsList" class="requirements-list"></div>
+        <p class="quiet">Generated requirements and the SRS are drafts. Have the relevant stakeholders review them before treating them as an approved baseline.</p>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="/static/app.js?v=finscope-indigo-v2"></script>
+  </body>
+</html>
