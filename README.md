@@ -1,6 +1,8 @@
-# FinReq Studio
+# FinScope — Financial Requirements Studio
 
-FinReq Studio is an RBI-scoped financial requirements engineering prototype built around a Retrieval-Augmented Generation (RAG) workflow. It turns stakeholder responses and supporting documents into traceable draft requirements, reviewable RBI control suggestions, derived requirements artefacts, and an SDLC advisory for human review.
+FinScope is a financial requirements engineering workspace built around a Retrieval-Augmented Generation (RAG) workflow. It turns stakeholder interviews and supporting documents into traceable draft requirements, reviewable RBI control suggestions, derived requirements artefacts, and an SDLC advisory for human review.
+
+The interface uses a deep indigo and mint visual system to distinguish discovery, evidence, governance, and review states. Recommendations and generated requirements remain advisory until a human reviewer approves them.
 
 ## Agent workflow
 
@@ -16,7 +18,7 @@ The hand-off is explicit and sequential: compliance, risk, and documentation run
 - Ten-prompt, answer-driven stakeholder interview that gathers the workflow, decisions, exceptions, integrations, controls, scale, and delivery constraints needed for SDLC analysis.
 - Upload and process `.txt`, `.md`, `.csv`, `.pdf`, and `.docx` source documents.
 - Mask common account/card, tax-ID, and national-ID-like patterns before indexing.
-- Store embeddings in a persistent, per-project ChromaDB collection.
+- Store vectors in a persistent SQLite index for local embeddings or a per-project ChromaDB collection for compatible remote embeddings.
 - Automatically index an allowlisted, versioned RBI reference-summary pack for every project; project uploads remain separate sources.
 - Inspect retrieved evidence before generating requirements.
 - Generate requirements with citations to the retrieved source chunks.
@@ -39,7 +41,7 @@ Stakeholder interview + uploaded documents
               |
      Create embeddings and index
               |
-     ChromaDB semantic retrieval
+     Persistent vector retrieval (SQLite locally, ChromaDB remotely)
               |
   LLM or evidence-only requirement drafts
               |
@@ -65,7 +67,7 @@ To use a different port, replace `8000` in the start command, for example `--por
 
 ## LLM Configuration
 
-The project works without an API key. In this local mode, it uses deterministic local embeddings for ChromaDB retrieval and creates evidence-only requirement drafts.
+The project works without an API key. In this local mode, it uses deterministic local embeddings with a persistent SQLite vector index and creates evidence-only requirement drafts. SQLite avoids native vector-index crashes on some Windows/Python combinations.
 
 To enable OpenAI-compatible embeddings and LLM-generated requirements, create a `.env` file in the project root:
 
@@ -109,7 +111,7 @@ Try the included [digital onboarding policy](sample_data/digital_onboarding_poli
 | --- | --- | --- |
 | `GET` | `/api/rag/status` | Safe RAG configuration and provider status; never returns secrets. |
 | `POST` | `/api/projects` | Create a project and index its source chunks. |
-| `GET` | `/api/projects/{project_id}/retrieval?query=...` | Retrieve the highest-ranked ChromaDB evidence chunks. |
+| `GET` | `/api/projects/{project_id}/retrieval?query=...` | Retrieve the highest-ranked evidence chunks from the configured vector index. |
 | `POST` | `/api/projects/{project_id}/requirements` | Generate evidence-grounded draft requirements. |
 | `POST` | `/api/projects/{project_id}/sdlc` | Generate the SDLC recommendation. |
 | `POST` | `/api/projects/{project_id}/sdlc/approval` | Record the human approval, rejection, or return-for-review decision. |
@@ -127,7 +129,7 @@ Interactive API documentation is available at http://127.0.0.1:8000/docs while t
 app/
   main.py                 FastAPI routes and application lifecycle
   services/documents.py   Extraction, masking, and chunking
-  services/rag.py         Embeddings, ChromaDB indexing, and retrieval
+  services/rag.py         Embeddings, SQLite/ChromaDB indexing, and retrieval
   services/llm.py         OpenAI-compatible structured generation
   services/quality.py     Requirement quality checks
   services/sdlc.py        SDLC scoring and workflow recommendation
@@ -135,7 +137,7 @@ app/
   prompts/                Requirement-generation prompt templates
 sample_data/              Example supporting document
 tests/                    Automated checks
-data/                     Local JSON projects and ChromaDB data
+data/                     Local JSON projects and persistent vector data
 ```
 
 ## Tests
@@ -153,7 +155,7 @@ Run the automated test suite from the project root:
 | `Address already in use` | A server is already using the chosen port. Stop it with `Ctrl+C`, or start this app on another port. |
 | `embedding_provider_configured: false` | Add a valid replacement key to `.env`, then restart the server. Local fallback mode still works without it. |
 | The configured embedding provider rejects a request | The app automatically indexes with local embeddings so project creation remains available. Verify `LLM_BASE_URL`, `EMBEDDING_MODEL`, and the provider key before relying on remote embeddings. |
-| `500` while creating a project | Stop the server, ensure the `data/` directory is writable, then restart. A fresh ChromaDB collection is created for each project. |
+| Project creation fails | Keep the server terminal open and check its error output. Ensure the `data/` directory is writable; local mode stores vectors in `data/chroma/local-vectors.sqlite3`. |
 | Browser appears frozen | In DevTools, select Resume script execution if the page is paused in the debugger, then refresh. |
 
 ## Limitations

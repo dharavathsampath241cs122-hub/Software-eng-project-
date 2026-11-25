@@ -29,7 +29,7 @@ def test_pipeline_creates_grounded_requirements_and_recommendation():
     assert isinstance(analyse(requirements), list)
     recommendation = recommend(requirements)
     assert recommendation.options[0].score >= recommendation.options[-1].score
-    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile", "DevSecOps", "Agile–V-Model hybrid"}
+    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile"}
     assert {factor.name for factor in recommendation.factors} == {"Requirement stability", "Requirement clarity", "Risk", "Complexity", "Need for early prototype", "Time constraints", "Customer involvement", "Frequency of changes", "Need for iterative development", "Need for risk analysis"}
 
 
@@ -140,7 +140,7 @@ def test_rag_configuration_never_exposes_api_key(monkeypatch):
 
     configuration = VectorStore.configuration()
 
-    assert configuration["vector_database"] == "ChromaDB"
+    assert configuration["vector_database"] == "SQLite local vector index"
     assert configuration["llm_model"] == "test-model"
     assert "not-for-the-client" not in str(configuration)
 
@@ -197,7 +197,7 @@ def test_project_creation_works_without_provider_key(monkeypatch, tmp_path):
     )
 
     assert response.status_code == 200
-    assert response.json()["rag"]["vector_database"] == "ChromaDB"
+    assert response.json()["rag"]["vector_database"] == "SQLite local vector index"
     knowledge_sources = [item for item in response.json()["documents"] if item["source_type"] == "Allowlisted RBI reference"]
     assert len(knowledge_sources) == 3
 

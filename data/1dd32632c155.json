@@ -1,0 +1,1271 @@
+{
+  "id": "1dd32632c155",
+  "functionality": "Digital loan approval",
+  "created_at": "2026-11-23T17:39:58.240840Z",
+  "documents": [
+    {
+      "id": "KB-RBI-KYC-2024",
+      "name": "Approved RBI knowledge — KYC Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2016-02-25",
+      "version": "Updated 2024-11-06",
+      "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-ITG-2023",
+      "name": "Approved RBI knowledge — IT Governance Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2024-04-01",
+      "version": "Directions issued 2023-11-07",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-DPSC-2021",
+      "name": "Approved RBI knowledge — Digital Payment Security Controls",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2021-02-18",
+      "version": "Master Direction 2021",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties."
+        }
+      ]
+    },
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "answer_count": 10,
+      "unknown_answer_count": 10,
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: no idea users and roles: no idea business rules: no idea exceptions: no idea data and integrations: no idea security and compliance: no idea validation and rollout: no idea service levels and scale: no idea workflow and outcomes: no idea delivery constraints: no idea"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "The system shall enforce strong customer authentication (e.g., multi‑factor) before any loan approval action is recorded.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-DPSC-2021",
+          "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+          "relevance": 0.07,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "source_version": "Master Direction 2021",
+          "effective_date": "2021-02-18"
+        }
+      ],
+      "business_justification": "Prevents unauthorized loan approvals and aligns with RBI’s Digital Payment Security Controls that require strong authentication for payment‑related workflows.",
+      "priority": "Must",
+      "dependencies": [],
+      "assumptions": [
+        "Loan approval is treated as a payment‑related workflow subject to RBI authentication guidance."
+      ],
+      "acceptance_criteria": [
+        "Authentication requires at least two independent factors (something the user knows and something the user has or is).",
+        "Successful authentication event is logged with user ID, timestamp and method used."
+      ],
+      "applicable_policy": "RBI-DPSC-2021",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-DPSC-2021",
+          "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+          "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "High",
+      "confidence": 0.9,
+      "reasoning": "Explicit RBI direction calls for strong authentication in payment workflows; loan approval triggers a financial transaction, so the requirement is a reasonable inference.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "The system shall perform fraud‑risk assessment on every loan application and flag high‑risk applications for manual review.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-DPSC-2021",
+          "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+          "relevance": 0.07,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "source_version": "Master Direction 2021",
+          "effective_date": "2021-02-18"
+        }
+      ],
+      "business_justification": "Detects and mitigates fraudulent loan requests, satisfying RBI’s fraud‑risk management expectations for digital payment processes.",
+      "priority": "Must",
+      "dependencies": [
+        "The system shall enforce strong customer authentication before any loan approval action is recorded."
+      ],
+      "assumptions": [
+        "A risk‑scoring engine can be integrated with the loan application flow."
+      ],
+      "acceptance_criteria": [
+        "Each application receives a risk score based on predefined criteria.",
+        "Applications with a score above the defined threshold are automatically routed to a fraud analyst for review."
+      ],
+      "applicable_policy": "RBI-ITG-2023; RBI-DPSC-2021",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-DPSC-2021",
+          "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+          "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "High",
+      "confidence": 0.85,
+      "reasoning": "RBI guidance explicitly mentions fraud‑risk management for payment workflows; extending this to loan applications is a logical inference.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "The loan approval application shall be developed, maintained and tested following a secure application lifecycle, including periodic security testing.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-DPSC-2021",
+          "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+          "relevance": 0.07,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "source_version": "Master Direction 2021",
+          "effective_date": "2021-02-18"
+        }
+      ],
+      "business_justification": "Ensures the loan approval system remains resilient against emerging threats, complying with RBI’s secure lifecycle and security testing requirements.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [
+        "The organization has access to qualified security testing resources."
+      ],
+      "acceptance_criteria": [
+        "A documented secure development lifecycle (SDLC) is in place.",
+        "Security testing (e.g., penetration test) is performed at least quarterly and findings are remediated within 30 days."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "RBI explicitly requires secure application lifecycle and security testing for payment‑related systems; applying the same controls to the loan approval system is a reasonable extension.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "The system shall verify applicant identity and retain KYC records in accordance with RBI KYC Directions, including storage in the Central KYC Records Registry where applicable.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-KYC-2024",
+          "document_name": "Approved RBI knowledge — KYC Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+          "relevance": 0.0,
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "source_version": "Updated 2024-11-06",
+          "effective_date": "2016-02-25"
+        }
+      ],
+      "business_justification": "Meets statutory RBI KYC obligations for customer due diligence on loan products, reducing regulatory and reputational risk.",
+      "priority": "Must",
+      "dependencies": [],
+      "assumptions": [
+        "Central KYC Records Registry access is available to the regulated entity."
+      ],
+      "acceptance_criteria": [
+        "Identity documents are captured and validated against RBI‑approved sources.",
+        "KYC data is stored securely and retained for the period mandated by RBI (minimum 5 years).",
+        "Records are searchable and can be supplied to RBI auditors on request."
+      ],
+      "applicable_policy": "RBI-KYC-CDD",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "High",
+      "confidence": 0.9,
+      "reasoning": "The KYC Directions explicitly list identity verification and record handling requirements; applying them to loan applicants is a direct, explicit mapping.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Access to loan‑approval functions shall be restricted to users with the designated \"Loan Approver\" role, with all actions logged for audit evidence.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-ITG-2023",
+          "document_name": "Approved RBI knowledge — IT Governance Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners.",
+          "relevance": 0.0,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "source_version": "Directions issued 2023-11-07",
+          "effective_date": "2024-04-01"
+        }
+      ],
+      "business_justification": "Ensures only authorized personnel can approve loans and provides traceability for regulatory audit, aligning with RBI IT Governance requirements on access controls and audit evidence.",
+      "priority": "Must",
+      "dependencies": [
+        "The system shall enforce strong customer authentication before any loan approval action is recorded."
+      ],
+      "assumptions": [
+        "Role‑based access control (RBAC) can be enforced within the application."
+      ],
+      "acceptance_criteria": [
+        "Only accounts assigned the \"Loan Approver\" role can change loan status to \"Approved\" or \"Rejected\".",
+        "Each status change is recorded with user ID, timestamp, and previous/new state in an immutable log.",
+        "Logs are retained for the period required by RBI IT Governance guidelines and are available for audit."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.85,
+      "reasoning": "RBI IT Governance Directions explicitly require access controls and audit evidence; mapping these controls to loan‑approval actions is a reasonable inference.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-002",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-003",
+      "check": "Ambiguity",
+      "severity": "Medium",
+      "message": "The requirement contains a qualitative term without a measurable threshold.",
+      "recommendation": "Define an observable metric, limit, or acceptance test."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-003",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-005",
+      "requirement_id": "REQ-004",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-006",
+      "requirement_id": "REQ-004",
+      "check": "Undefined terminology",
+      "severity": "Medium",
+      "message": "The requirement contains a term whose meaning or boundary is not defined.",
+      "recommendation": "Define the term in a glossary or replace it with an observable condition."
+    },
+    {
+      "id": "QI-007",
+      "requirement_id": "REQ-005",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "risks": [],
+  "traceability": [
+    {
+      "requirement_id": "REQ-001",
+      "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-002",
+      "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-ITG-2023",
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-003",
+      "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-004",
+      "source_document": "Approved RBI knowledge — KYC Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-005",
+      "source_document": "Approved RBI knowledge — IT Governance Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": []
+    }
+  ],
+  "artefacts": {
+    "srs": {
+      "title": "Software Requirements Specification: Digital loan approval",
+      "requirements": [
+        {
+          "id": "REQ-001",
+          "statement": "The system shall enforce strong customer authentication (e.g., multi‑factor) before any loan approval action is recorded.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-DPSC-2021",
+              "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+              "relevance": 0.07,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "source_version": "Master Direction 2021",
+              "effective_date": "2021-02-18"
+            }
+          ],
+          "business_justification": "Prevents unauthorized loan approvals and aligns with RBI’s Digital Payment Security Controls that require strong authentication for payment‑related workflows.",
+          "priority": "Must",
+          "dependencies": [],
+          "assumptions": [
+            "Loan approval is treated as a payment‑related workflow subject to RBI authentication guidance."
+          ],
+          "acceptance_criteria": [
+            "Authentication requires at least two independent factors (something the user knows and something the user has or is).",
+            "Successful authentication event is logged with user ID, timestamp and method used."
+          ],
+          "applicable_policy": "RBI-DPSC-2021",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-DPSC-2021",
+              "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+              "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "High",
+          "confidence": 0.9,
+          "reasoning": "Explicit RBI direction calls for strong authentication in payment workflows; loan approval triggers a financial transaction, so the requirement is a reasonable inference.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-002",
+          "statement": "The system shall perform fraud‑risk assessment on every loan application and flag high‑risk applications for manual review.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-DPSC-2021",
+              "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+              "relevance": 0.07,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "source_version": "Master Direction 2021",
+              "effective_date": "2021-02-18"
+            }
+          ],
+          "business_justification": "Detects and mitigates fraudulent loan requests, satisfying RBI’s fraud‑risk management expectations for digital payment processes.",
+          "priority": "Must",
+          "dependencies": [
+            "The system shall enforce strong customer authentication before any loan approval action is recorded."
+          ],
+          "assumptions": [
+            "A risk‑scoring engine can be integrated with the loan application flow."
+          ],
+          "acceptance_criteria": [
+            "Each application receives a risk score based on predefined criteria.",
+            "Applications with a score above the defined threshold are automatically routed to a fraud analyst for review."
+          ],
+          "applicable_policy": "RBI-ITG-2023; RBI-DPSC-2021",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-DPSC-2021",
+              "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+              "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "High",
+          "confidence": 0.85,
+          "reasoning": "RBI guidance explicitly mentions fraud‑risk management for payment workflows; extending this to loan applications is a logical inference.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-003",
+          "statement": "The loan approval application shall be developed, maintained and tested following a secure application lifecycle, including periodic security testing.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-DPSC-2021",
+              "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+              "relevance": 0.07,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "source_version": "Master Direction 2021",
+              "effective_date": "2021-02-18"
+            }
+          ],
+          "business_justification": "Ensures the loan approval system remains resilient against emerging threats, complying with RBI’s secure lifecycle and security testing requirements.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [
+            "The organization has access to qualified security testing resources."
+          ],
+          "acceptance_criteria": [
+            "A documented secure development lifecycle (SDLC) is in place.",
+            "Security testing (e.g., penetration test) is performed at least quarterly and findings are remediated within 30 days."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.8,
+          "reasoning": "RBI explicitly requires secure application lifecycle and security testing for payment‑related systems; applying the same controls to the loan approval system is a reasonable extension.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-004",
+          "statement": "The system shall verify applicant identity and retain KYC records in accordance with RBI KYC Directions, including storage in the Central KYC Records Registry where applicable.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-KYC-2024",
+              "document_name": "Approved RBI knowledge — KYC Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+              "relevance": 0.0,
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "source_version": "Updated 2024-11-06",
+              "effective_date": "2016-02-25"
+            }
+          ],
+          "business_justification": "Meets statutory RBI KYC obligations for customer due diligence on loan products, reducing regulatory and reputational risk.",
+          "priority": "Must",
+          "dependencies": [],
+          "assumptions": [
+            "Central KYC Records Registry access is available to the regulated entity."
+          ],
+          "acceptance_criteria": [
+            "Identity documents are captured and validated against RBI‑approved sources.",
+            "KYC data is stored securely and retained for the period mandated by RBI (minimum 5 years).",
+            "Records are searchable and can be supplied to RBI auditors on request."
+          ],
+          "applicable_policy": "RBI-KYC-CDD",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "High",
+          "confidence": 0.9,
+          "reasoning": "The KYC Directions explicitly list identity verification and record handling requirements; applying them to loan applicants is a direct, explicit mapping.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-005",
+          "statement": "Access to loan‑approval functions shall be restricted to users with the designated \"Loan Approver\" role, with all actions logged for audit evidence.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-ITG-2023",
+              "document_name": "Approved RBI knowledge — IT Governance Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners.",
+              "relevance": 0.0,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "source_version": "Directions issued 2023-11-07",
+              "effective_date": "2024-04-01"
+            }
+          ],
+          "business_justification": "Ensures only authorized personnel can approve loans and provides traceability for regulatory audit, aligning with RBI IT Governance requirements on access controls and audit evidence.",
+          "priority": "Must",
+          "dependencies": [
+            "The system shall enforce strong customer authentication before any loan approval action is recorded."
+          ],
+          "assumptions": [
+            "Role‑based access control (RBAC) can be enforced within the application."
+          ],
+          "acceptance_criteria": [
+            "Only accounts assigned the \"Loan Approver\" role can change loan status to \"Approved\" or \"Rejected\".",
+            "Each status change is recorded with user ID, timestamp, and previous/new state in an immutable log.",
+            "Logs are retained for the period required by RBI IT Governance guidelines and are available for audit."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.85,
+          "reasoning": "RBI IT Governance Directions explicitly require access controls and audit evidence; mapping these controls to loan‑approval actions is a reasonable inference.",
+          "approval_status": "Needs review"
+        }
+      ]
+    },
+    "user_stories": [
+      {
+        "id": "US-001",
+        "story": "As a relevant stakeholder, I want the system shall enforce strong customer authentication (e.g., multi‑factor) before any loan approval action is recorded. so that Prevents unauthorized loan approvals and aligns with RBI’s Digital Payment Security Controls that require strong authentication for payment‑related workflows.",
+        "acceptance_criteria": [
+          "Authentication requires at least two independent factors (something the user knows and something the user has or is).",
+          "Successful authentication event is logged with user ID, timestamp and method used."
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "US-002",
+        "story": "As a relevant stakeholder, I want the system shall perform fraud‑risk assessment on every loan application and flag high‑risk applications for manual review. so that Detects and mitigates fraudulent loan requests, satisfying RBI’s fraud‑risk management expectations for digital payment processes.",
+        "acceptance_criteria": [
+          "Each application receives a risk score based on predefined criteria.",
+          "Applications with a score above the defined threshold are automatically routed to a fraud analyst for review."
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "US-003",
+        "story": "As a relevant stakeholder, I want the loan approval application shall be developed, maintained and tested following a secure application lifecycle, including periodic security testing. so that Ensures the loan approval system remains resilient against emerging threats, complying with RBI’s secure lifecycle and security testing requirements.",
+        "acceptance_criteria": [
+          "A documented secure development lifecycle (SDLC) is in place.",
+          "Security testing (e.g., penetration test) is performed at least quarterly and findings are remediated within 30 days."
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "US-004",
+        "story": "As a relevant stakeholder, I want the system shall verify applicant identity and retain KYC records in accordance with RBI KYC Directions, including storage in the Central KYC Records Registry where applicable. so that Meets statutory RBI KYC obligations for customer due diligence on loan products, reducing regulatory and reputational risk.",
+        "acceptance_criteria": [
+          "Identity documents are captured and validated against RBI‑approved sources.",
+          "KYC data is stored securely and retained for the period mandated by RBI (minimum 5 years).",
+          "Records are searchable and can be supplied to RBI auditors on request."
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "US-005",
+        "story": "As a relevant stakeholder, I want access to loan‑approval functions shall be restricted to users with the designated \"Loan Approver\" role, with all actions logged for audit evidence. so that Ensures only authorized personnel can approve loans and provides traceability for regulatory audit, aligning with RBI IT Governance requirements on access controls and audit evidence.",
+        "acceptance_criteria": [
+          "Only accounts assigned the \"Loan Approver\" role can change loan status to \"Approved\" or \"Rejected\".",
+          "Each status change is recorded with user ID, timestamp, and previous/new state in an immutable log.",
+          "Logs are retained for the period required by RBI IT Governance guidelines and are available for audit."
+        ],
+        "requirement_id": "REQ-005"
+      }
+    ],
+    "use_cases": [
+      {
+        "id": "UC-001",
+        "name": "The system shall enforce strong customer authentication (e.g., multi‑factor) before any loan approva",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Loan approval is treated as a payment‑related workflow subject to RBI authentication guidance."
+        ],
+        "success_criteria": [
+          "Authentication requires at least two independent factors (something the user knows and something the user has or is).",
+          "Successful authentication event is logged with user ID, timestamp and method used."
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "UC-002",
+        "name": "The system shall perform fraud‑risk assessment on every loan application and flag high‑risk applicat",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "A risk‑scoring engine can be integrated with the loan application flow."
+        ],
+        "success_criteria": [
+          "Each application receives a risk score based on predefined criteria.",
+          "Applications with a score above the defined threshold are automatically routed to a fraud analyst for review."
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "UC-003",
+        "name": "The loan approval application shall be developed, maintained and tested following a secure applicati",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "The organization has access to qualified security testing resources."
+        ],
+        "success_criteria": [
+          "A documented secure development lifecycle (SDLC) is in place.",
+          "Security testing (e.g., penetration test) is performed at least quarterly and findings are remediated within 30 days."
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "UC-004",
+        "name": "The system shall verify applicant identity and retain KYC records in accordance with RBI KYC Directi",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Central KYC Records Registry access is available to the regulated entity."
+        ],
+        "success_criteria": [
+          "Identity documents are captured and validated against RBI‑approved sources.",
+          "KYC data is stored securely and retained for the period mandated by RBI (minimum 5 years).",
+          "Records are searchable and can be supplied to RBI auditors on request."
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "UC-005",
+        "name": "Access to loan‑approval functions shall be restricted to users with the designated \"Loan Approver\" r",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Role‑based access control (RBAC) can be enforced within the application."
+        ],
+        "success_criteria": [
+          "Only accounts assigned the \"Loan Approver\" role can change loan status to \"Approved\" or \"Rejected\".",
+          "Each status change is recorded with user ID, timestamp, and previous/new state in an immutable log.",
+          "Logs are retained for the period required by RBI IT Governance guidelines and are available for audit."
+        ],
+        "requirement_id": "REQ-005"
+      }
+    ],
+    "risk_register": [],
+    "traceability_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-ITG-2023",
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-003",
+        "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "source_document": "Approved RBI knowledge — KYC Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-005",
+        "source_document": "Approved RBI knowledge — IT Governance Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": []
+      }
+    ],
+    "assumptions_and_dependencies": [
+      {
+        "requirement_id": "REQ-001",
+        "assumptions": [
+          "Loan approval is treated as a payment‑related workflow subject to RBI authentication guidance."
+        ],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "assumptions": [
+          "A risk‑scoring engine can be integrated with the loan application flow."
+        ],
+        "dependencies": [
+          "The system shall enforce strong customer authentication before any loan approval action is recorded."
+        ]
+      },
+      {
+        "requirement_id": "REQ-003",
+        "assumptions": [
+          "The organization has access to qualified security testing resources."
+        ],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "assumptions": [
+          "Central KYC Records Registry access is available to the regulated entity."
+        ],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-005",
+        "assumptions": [
+          "Role‑based access control (RBAC) can be enforced within the application."
+        ],
+        "dependencies": [
+          "The system shall enforce strong customer authentication before any loan approval action is recorded."
+        ]
+      }
+    ],
+    "open_issues": [
+      {
+        "id": "QI-003",
+        "requirement_id": "REQ-003",
+        "check": "Ambiguity",
+        "severity": "Medium",
+        "message": "The requirement contains a qualitative term without a measurable threshold.",
+        "recommendation": "Define an observable metric, limit, or acceptance test."
+      },
+      {
+        "id": "QI-006",
+        "requirement_id": "REQ-004",
+        "check": "Undefined terminology",
+        "severity": "Medium",
+        "message": "The requirement contains a term whose meaning or boundary is not defined.",
+        "recommendation": "Define the term in a glossary or replace it with an observable condition."
+      }
+    ],
+    "compliance_control_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "mappings": [
+          {
+            "control_id": "RBI-DPSC-2021",
+            "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+            "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-002",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-DPSC-2021",
+            "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+            "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-003",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-004",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-005",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      }
+    ],
+    "clarification_queue": [
+      "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-003: What measurable threshold or observable outcome should replace the qualitative wording?",
+      "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-004: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-004: How should the undefined term be defined in the project glossary or business rules?",
+      "REQ-005: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+    ],
+    "approval_register": [],
+    "evaluation": {
+      "requirements_count": 5,
+      "citation_coverage": 1.0,
+      "measurable_acceptance_coverage": 1.0,
+      "rbi_control_coverage": 1.0,
+      "open_high_issues": 0,
+      "open_risks": 0,
+      "human_review_coverage": 0.0,
+      "notes": [
+        "Human review is incomplete."
+      ]
+    }
+  },
+  "clarification_questions": [
+    "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-003: What measurable threshold or observable outcome should replace the qualitative wording?",
+    "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-004: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-004: How should the undefined term be defined in the project glossary or business rules?",
+    "REQ-005: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+  ],
+  "approvals": [],
+  "evaluation": {
+    "requirements_count": 5,
+    "citation_coverage": 1.0,
+    "measurable_acceptance_coverage": 1.0,
+    "rbi_control_coverage": 1.0,
+    "open_high_issues": 0,
+    "open_risks": 0,
+    "human_review_coverage": 0.0,
+    "notes": [
+      "Human review is incomplete."
+    ]
+  },
+  "sdlc": {
+    "recommended_sdlc": "Prototyping",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Not evidenced",
+        "score": 2,
+        "rationale": "Half or more stakeholder answers were unknown; generated draft criteria do not establish validated clarity.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Risk",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Stakeholder answers did not establish project-specific risk; confirm risks before selecting a controlled lifecycle.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Complexity",
+        "value": "Not evidenced",
+        "score": 2,
+        "rationale": "Stakeholder answers did not establish project-specific integration or data complexity.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 5,
+        "rationale": "Most interview answers were unknown; a prototype can help validate assumptions and discover requirements.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Answers did not establish the level of customer availability for repeated feedback.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Interview answers did not establish expected feedback or change cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Project-specific risks were not established by the stakeholder answers.",
+        "requirement_ids": []
+      }
+    ],
+    "options": [
+      {
+        "name": "Prototyping",
+        "score": 89,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 67,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 56,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "Spiral",
+        "score": 55,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "RAD",
+        "score": 40,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 30,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      },
+      {
+        "name": "V-Shape",
+        "score": 29,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      }
+    ],
+    "justification": "Half or more stakeholder interview answers were unknown and no project documents supplied the missing evidence. Prototyping is recommended to validate assumptions and discover requirements before the lifecycle is selected. requirement stability is needs validation, requirement clarity is not evidenced, risk is not evidenced, complexity is not evidenced, need for early prototype is likely. Confirm the findings with stakeholders before approval.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "agent_runs": [
+    {
+      "agent": "Requirements Agent",
+      "responsibility": "Requirement extraction, classification, traceability, and quality review",
+      "status": "Waiting for human review",
+      "output": "Generated 5 LLM-assisted RAG-grounded draft requirement(s) and found 7 quality issue(s).",
+      "at": "2026-11-23T17:40:05.707019Z"
+    },
+    {
+      "agent": "Compliance & Risk Agent",
+      "responsibility": "RBI control mapping, risk register generation, and traceability",
+      "status": "Waiting for human review",
+      "output": "Mapped 6 RBI control suggestion(s) and raised 0 reviewable risk entries.",
+      "at": "2026-11-23T17:40:05.707383Z"
+    },
+    {
+      "agent": "Documentation Agent",
+      "responsibility": "SRS, user-story, use-case, traceability, risk, and open-issue artefacts",
+      "status": "Waiting for human review",
+      "output": "Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts.",
+      "at": "2026-11-23T17:40:05.707803Z"
+    },
+    {
+      "agent": "Governance & SDLC Agent",
+      "responsibility": "Risk and control assessment, SDLC ranking, and approval-gate planning",
+      "status": "Waiting for human review",
+      "output": "Recommended Prototyping; human approval remains required.",
+      "at": "2026-11-23T17:40:16.897948Z"
+    }
+  ],
+  "audit_log": [
+    {
+      "at": "2026-11-23T17:39:58.293859+00:00",
+      "action": "sources_recorded",
+      "detail": "Indexed 3 allowlisted RBI reference summary source(s), plus 10 masked stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-11-23T17:39:58.293923+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 4 source chunk(s) in SQLite local vector index."
+    },
+    {
+      "at": "2026-11-23T17:40:05.707049+00:00",
+      "action": "agent_completed",
+      "detail": "Requirements Agent: Generated 5 LLM-assisted RAG-grounded draft requirement(s) and found 7 quality issue(s)."
+    },
+    {
+      "at": "2026-11-23T17:40:05.707396+00:00",
+      "action": "agent_completed",
+      "detail": "Compliance & Risk Agent: Mapped 6 RBI control suggestion(s) and raised 0 reviewable risk entries."
+    },
+    {
+      "at": "2026-11-23T17:40:05.707815+00:00",
+      "action": "agent_completed",
+      "detail": "Documentation Agent: Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts."
+    },
+    {
+      "at": "2026-11-23T17:40:16.897962+00:00",
+      "action": "agent_completed",
+      "detail": "Governance & SDLC Agent: Recommended Prototyping; human approval remains required."
+    },
+    {
+      "at": "2026-11-23T17:40:24.351106+00:00",
+      "action": "srs_generated",
+      "detail": "Generated local IEEE 830-1998 SRS document without an LLM request."
+    }
+  ]
+}

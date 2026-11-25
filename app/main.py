@@ -20,6 +20,7 @@ from app.services.generator import generate_evidence_drafts
 from app.services.knowledge import approved_documents
 from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements, select_interview_question
 from app.services.rag import RagConfigurationError, VectorStore, embedding_provider_configured, provider_configured
+from app.services.sdlc import count_unknown_answers
 from app.services.storage import ProjectStore
 
 ROOT = Path(__file__).resolve().parent
@@ -46,18 +47,18 @@ INTERVIEW_TOPICS = [
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     print("\n" + "=" * 56)
-    print("  FinReq Studio is running")
+    print("  FinScope is running")
     print("  App:      http://127.0.0.1:8000")
     print("  API docs: http://127.0.0.1:8000/docs")
-    print("  RAG:      ChromaDB + OpenAI-compatible embeddings")
-    print("  Storage:  local JSON project data and ChromaDB vectors")
+    print(f"  RAG:      {vector_store.configuration()['vector_database']} + {vector_store.configuration()['embedding_model']}")
+    print("  Storage:  local JSON project data and persistent vector index")
     print("  Stop:     press Ctrl+C")
     print("=" * 56 + "\n")
     yield
-    print("FinReq Studio stopped.")
+    print("FinScope stopped.")
 
 
-app = FastAPI(title="FinReq Studio", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="FinScope — Financial Requirements Studio", version="0.1.0", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 
 
@@ -155,7 +156,14 @@ async def create_project(
     if answers:
         interview_text = "\n".join(f"{question}: {answer}" for question, answer in answers.items())
         masked_text = mask_sensitive(interview_text)
-        documents.append({"id": "DOC-001", "name": "Stakeholder interview", "chunks": [chunk.__dict__ for chunk in chunk_text(masked_text)]})
+        answer_count, unknown_answer_count = count_unknown_answers(answers)
+        documents.append({
+            "id": "DOC-001",
+            "name": "Stakeholder interview",
+            "answer_count": answer_count,
+            "unknown_answer_count": unknown_answer_count,
+            "chunks": [chunk.__dict__ for chunk in chunk_text(masked_text)],
+        })
         project_source_count += 1
     for upload in uploads:
         content = await upload.read()
@@ -176,7 +184,7 @@ async def create_project(
     except RagConfigurationError as exc:
         raise HTTPException(503, str(exc)) from exc
     audit(project, "sources_recorded", f"Indexed {knowledge_document_count} allowlisted RBI reference summary source(s), plus {len(answers)} masked stakeholder response(s) and {len(uploads)} uploaded document(s).")
-    audit(project, "rag_indexed", f"Indexed {indexed_chunks} source chunk(s) in ChromaDB.")
+    audit(project, "rag_indexed", f"Indexed {indexed_chunks} source chunk(s) in {vector_store.configuration()['vector_database']}.")
     store.save(project)
     return JSONResponse({
         "project_id": project.id,

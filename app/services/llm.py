@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import ssl
 from pathlib import Path
@@ -15,6 +16,7 @@ from app.services.rag import _api_key, provider_configured
 
 PROMPTS = Path(__file__).resolve().parents[1] / "prompts"
 TLS_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+logger = logging.getLogger(__name__)
 
 
 def enabled() -> bool:
@@ -37,21 +39,13 @@ def _post_chat(prompt: str) -> dict:
         "temperature": 0.1,
     }
 
-    print("========== GROQ DEBUG ==========")
-    print("URL:", f"{base_url}/chat/completions")
-    print("MODEL:", model)
-    print("API KEY PRESENT:", bool(api_key))
-    print("API KEY PREFIX:", api_key[:8] if api_key else "NONE")
-    print("PROMPT TOKENS APPROX:", len(prompt) // 4)
-    print("================================")
-
     request = Request(
         f"{base_url}/chat/completions",
         data=json.dumps(payload).encode("utf-8"),
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
-            "User-Agent": "FinReq-Studio/1.0",
+            "User-Agent": "FinScope/1.0",
         },
         method="POST",
     )
@@ -64,27 +58,16 @@ def _post_chat(prompt: str) -> dict:
         ) as response:
             raw = response.read().decode("utf-8")
 
-        print("========== GROQ RESPONSE ==========")
-        print(raw)
-        print("===================================")
-
         data = json.loads(raw)
         content = data["choices"][0]["message"]["content"]
 
         return json.loads(content)
 
     except Exception as exc:
-        print("========== GROQ ACTUAL ERROR ==========")
-        print(repr(exc))
-
-        if hasattr(exc, "read"):
-            try:
-                print("BODY:", exc.read().decode("utf-8"))
-            except Exception:
-                pass
-
-        print("=======================================")
-
+        # Do not log provider response bodies, prompts, stakeholder data, or
+        # credential fragments. Provider exceptions can include response data.
+        status = getattr(exc, "code", None)
+        logger.warning("Groq request failed (status=%s, error=%s)", status, type(exc).__name__)
         raise RuntimeError(f"Groq request failed: {exc}") from exc
 
 
